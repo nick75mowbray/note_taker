@@ -55,3 +55,57 @@ body {
     outline: none;
     background-color: #FFFF77;
 }
+
+/* style notes page */
+.notes-container {
+    display: flex;
+    justify-content: center;
+}
+.banner {
+    background-color: #FFFFC1;
+    color: #707070;
+    text-align: center;
+}
+/* note cards */
+.note-card {
+    border-bottom: 1px solid #DBDBDB;
+    padding: 20px 10px;
+}
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title {
+    font-weight: 700;
+}
+.delete {
+    background-color: transparent;
+}
+/* form */
+.form-col {
+    background-color: #FCFFE6;
+}
+input {
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 8px;
+    max-width: 400px;
+    min-width: 300px;
+    margin: 16px 0;
+}
+#form-description {
+    height: 300px;
+}
+#buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+#cancel, #save {
+    width: 45%;
+    height: 60px;
+    text-align: center;
+    font-weight: 700;
+}
