@@ -1,14 +1,17 @@
-var express = require("express");
-var path = require("path");
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
 
-var app = express();
-var PORT = process.env.PORT || 3001;
+const app = express();
+let PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // load stylesheet
-app.use('/css',express.static(path.join(__dirname, 'public/assets/css')));
+app.use('/assets/css',express.static(path.join(__dirname, 'public/assets/css')));
+// load javascript
+app.use('/assets/js',express.static(path.join(__dirname, 'public/assets/js')));
 
 let NotesArr = [];
 
@@ -22,17 +25,37 @@ const exampleNote = {
 
 
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "/public/index.html"));
   });
 
 app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
   });
 
 app.post("/notes", function(req, res){
     let newNote = req.body;
     console.log(newNote);
 });  
+
+const jsonData = fs.readFile(path.join(__dirname, "/db/db.json"), function(err, data){
+        if (data){
+            console.log("data returned"+data);
+            return data;
+        }
+        if (err){
+            console.error(err);
+        }
+    });
+
+app.get("/api/notes", function(req, res) {
+    res.json(jsonData);
+  });
+
+// function to read json file
+// function readJson(res){
+    
+   
+// }
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);

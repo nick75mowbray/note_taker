@@ -8,12 +8,21 @@ const $noteList = $(".list-container .list-group");
 let activeNote = {};
 
 // A function for getting all notes from the db
-const getNotes = () => {
-  return $.ajax({
-    url: "/api/notes",
-    method: "GET",
+// function getNotes(){
+//   return $.ajax({
+//     url: "/api/notes",
+//     method: "GET",
+//   });
+// };
+function getNotes(){
+  $.get("/api/notes", function(data){
+    if (data){
+      console.log("data in index.js"+data);
+      console.log("strinified data"+data[0].toString());
+      renderNoteList(data[0].toString());
+    }
   });
-};
+}
 
 // A function for saving a note to the db
 const saveNote = (note) => {
@@ -127,17 +136,21 @@ const renderNoteList = (notes) => {
     noteListItems.push(create$li("No saved Notes", false));
   }
 
-  notes.forEach((note) => {
-    const $li = create$li(note.title).data(note);
+  for (let i = 0; i < notes.length; i++){
+    const $li = create$li(note[i].title).data(note[i]);
     noteListItems.push($li);
-  });
+  };
+  // notes.each((note) => {
+  //   const $li = create$li(note.title).data(note);
+  //   noteListItems.push($li);
+  // });
 
   $noteList.append(noteListItems);
 };
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
-  return getNotes().then(renderNoteList);
+  return getNotes();  
 };
 
 $saveNoteBtn.on("click", handleNoteSave);
