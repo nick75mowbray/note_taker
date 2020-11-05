@@ -1,26 +1,14 @@
 {
-  "name": "note_taker",
+  "name": "note-taker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nick75mowbray/note_taker.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nick75mowbray/note_taker/issues"
-  },
-  "homepage": "https://github.com/nick75mowbray/note_taker#readme"
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }

@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // load stylesheet
-app.use('/css',express.static(path.join(__dirname, 'public/css')));
+app.use('/css',express.static(path.join(__dirname, 'public/assets/css')));
 
 let NotesArr = [];
 
