@@ -2,6 +2,9 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
+// for generating unique id
+const { v4: uuidv4 } = require('uuid');
+
 const app = express();
 let PORT = process.env.PORT || 3001;
 
@@ -12,16 +15,6 @@ app.use(express.json());
 app.use('/assets/css',express.static(path.join(__dirname, 'public/assets/css')));
 // load javascript
 app.use('/assets/js',express.static(path.join(__dirname, 'public/assets/js')));
-
-let NotesArr = [];
-
-const exampleNote = {
-  id: 1,
-  title: "title of example note",
-  description: "description of example note, blah blah blah"
-};
-
-
 
 
 app.get("/", function(req, res) {
@@ -34,21 +27,36 @@ app.get("/notes", function(req, res) {
 
 app.post("/notes", function(req, res){
     let newNote = req.body;
+    // add id property
+    newNote.id = uuidv4();
+    
     console.log(newNote);
+    // add new note to json file
+    let notesRead2 = fs.readFileSync(path.join(__dirname, "/db/db.json"), {encoding: "utf-8"});
+    console.log(notesRead2);
+    console.log(JSON.parse(notesRead2));
+    let notes = [];
+    notes.push(JSON.parse(notesRead2));
+    notes.push(newNote);
+    console.log("notes "+notes);
+    fs.writeFile(path.join(__dirname, "/db/db.json"), JSON.stringify(notes), "utf-8", function(err){
+      if (err){
+        console.log(err)
+      } else {
+        console.log(`added ${newNote} to db.json`);
+      }
+    });
+    res.end();
 });  
 
-const jsonData = fs.readFile(path.join(__dirname, "/db/db.json"), function(err, data){
-        if (data){
-            console.log("data returned"+data);
-            return data;
-        }
-        if (err){
-            console.error(err);
-        }
-    });
+
+
 
 app.get("/api/notes", function(req, res) {
-    res.json(jsonData);
+    
+    const notesRead = fs.readFileSync(path.join(__dirname, "/db/db.json"), {encoding: "utf-8"});
+    console.log(JSON.parse(notesRead));
+    res.json(JSON.parse(notesRead));
   });
 
 // function to read json file
