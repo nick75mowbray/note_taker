@@ -33,7 +33,7 @@ function getNotes(){
 
 // A function for deleting a note from the db
 const deleteNote = (id) => {
-  $.ajax({
+  return $.ajax({
     url: "api/notes/" + id,
     method: "DELETE",
   })
