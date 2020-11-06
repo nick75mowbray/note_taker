@@ -84,3 +84,21 @@ html, body {
   font-size: 1.2rem;
   padding-left: 20px;
 }
+#index-button {
+  background-color: red;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+}
+#index-button:hover, #index-button:focus {
+  outline: none;
+  box-shadow: 2px 2px 5px #757575;
+}
+.display-4 {
+  font-family: 'Noto Serif', serif;
+  font-size: 3.5rem !important;
+  font-weight: 600;
+}
+.jumbotron {
+  background-color: #eeeeee;
+}
