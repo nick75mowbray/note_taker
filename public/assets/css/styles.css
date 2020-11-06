@@ -16,7 +16,7 @@ html, body {
 }
 
 .note-textarea, .note-title {
-  color: #000000;
+  color: #333333;
   width: 100%;
   outline: none;
   border: none;
@@ -26,12 +26,13 @@ html, body {
   resize: none;
   height: calc(100% - 63px);
   padding-top: 15px;
+  font-size: 1.2rem;
 }
 
 .note-title {
   height: 50px;
   margin-top: 13px;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .note-title:read-only, .note-textarea:read-only {
@@ -65,6 +66,21 @@ html, body {
 .list-container .list-group-item {
   border-left: none;
   border-right: none;
-  padding: 20px;
+  padding: 20px 10px;
   cursor: pointer;
+}
+
+.bg-custom {
+  background-color: #eeeeee;
+
+}
+.navbar-brand {
+  font-family: 'Noto Serif', serif;
+  font-size: 3rem !important;
+  font-weight: 600;
+  padding: 0 10px;
+}
+.list-group {
+  font-size: 1.2rem;
+  padding-left: 20px;
 }
